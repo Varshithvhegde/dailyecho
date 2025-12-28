@@ -3,11 +3,12 @@ import { MoodChart } from '@/components/diary/MoodChart';
 import { StreakCounter } from '@/components/diary/StreakCounter';
 import { CalendarView } from '@/components/diary/CalendarView';
 import { moods, getMoodByValue } from '@/data/moods';
-import { Video, Clock, TrendingUp, Award, Loader2 } from 'lucide-react';
+import { Video, Clock, TrendingUp, Award, Loader2, Trophy } from 'lucide-react';
 import { useDiaryEntries } from '@/hooks/useDiaryEntries';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { Mood, AIAnalysis } from '@/types/diary';
+import { Mood, AIAnalysis, DiaryEntry } from '@/types/diary';
+import { AchievementsList } from '@/components/diary/AchievementsList';
 
 export default function Insights() {
   const navigate = useNavigate();
@@ -197,6 +198,15 @@ export default function Insights() {
               );
             })}
           </div>
+        </div>
+
+        {/* Achievements Section */}
+        <div className="mt-8 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <h2 className="font-display text-2xl font-medium text-foreground mb-6 flex items-center gap-2">
+            <Trophy className="w-6 h-6 text-yellow-500" />
+            Achievements
+          </h2>
+          <AchievementsList entries={entries as unknown as DiaryEntry[]} streak={streak} />
         </div>
       </main>
     </div>

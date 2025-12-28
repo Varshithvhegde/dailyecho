@@ -11,8 +11,11 @@ import Insights from "./pages/Insights";
 import Auth from "./pages/Auth";
 import Entry from "./pages/Entry";
 import NotFound from "./pages/NotFound";
+import { AnimatedBackground } from "@/components/layout/AnimatedBackground";
 
 const queryClient = new QueryClient();
+
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -21,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+          <AnimatedBackground />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />

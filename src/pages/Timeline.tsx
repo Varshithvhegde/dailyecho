@@ -4,14 +4,15 @@ import { CalendarView } from '@/components/diary/CalendarView';
 import { EntryCard } from '@/components/diary/EntryCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Grid, List, Loader2 } from 'lucide-react';
+import { EchoWall } from '@/components/diary/EchoWall';
+import { LayoutGrid, Grid, List, Search, Loader2 } from 'lucide-react';
 import { moods } from '@/data/moods';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
 import { useDiaryEntries } from '@/hooks/useDiaryEntries';
 import { useNavigate } from 'react-router-dom';
 
-type ViewMode = 'grid' | 'calendar';
+type ViewMode = 'grid' | 'calendar' | 'mosaic';
 
 export default function Timeline() {
   const navigate = useNavigate();
@@ -108,7 +109,19 @@ export default function Timeline() {
                 className={cn("rounded-lg", viewMode === 'calendar' && "bg-background shadow-sm")}
               >
                 <List className="w-4 h-4 mr-2" />
-                Calendar
+                List
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setViewMode('mosaic')}
+                className={cn(
+                  "rounded-lg",
+                  viewMode === 'mosaic' && "bg-background shadow-sm text-indigo-500"
+                )}
+              >
+                <LayoutGrid className="w-4 h-4 mr-2" />
+                Mosaic
               </Button>
             </div>
           </div>
@@ -152,10 +165,12 @@ export default function Timeline() {
                 </div>
               </div>
             </div>
+          ) : viewMode === 'mosaic' ? (
+            <EchoWall entries={filteredEntries} />
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredEntries.map((entry) => (
-                <EntryCard key={entry.id} entry={entry} />
+                <EntryCard key={entry.id} entry={entry} onClick={() => navigate(`/entry/${entry.id}`)} />
               ))}
             </div>
           )}

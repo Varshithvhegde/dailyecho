@@ -87,38 +87,51 @@ const Index = () => {
 
       <main className="container px-4 py-8 md:py-12 max-w-5xl">
         {/* Hero Section */}
-        <section className="relative mb-12 animate-fade-in">
-          <div className="absolute inset-0 gradient-warm rounded-3xl opacity-50 blur-3xl -z-10" />
+        {/* Hero Section */}
+        <section className="relative mb-12 animate-fade-in group">
+          {/* Decorative ambient light specifically for Hero */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-coral/20 rounded-full blur-[100px] -z-10 group-hover:bg-coral/30 transition-colors duration-1000" />
 
-          <div className="glass-card p-8 md:p-12 rounded-3xl shadow-card">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-4 max-w-lg">
-                <div className="flex items-center gap-2 text-coral">
-                  <Sparkles className="w-5 h-5" />
-                  <span className="text-sm font-medium">Today's Prompt</span>
+          <div className="glass-card p-8 md:p-12 rounded-[2.5rem] shadow-card relative overflow-hidden transition-all duration-500 hover:shadow-glow border-white/40 dark:border-white/10">
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 pointer-events-none" />
+
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10">
+              <div className="space-y-6 max-w-xl">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 text-coral border border-coral/20 backdrop-blur-sm shadow-sm">
+                  <Sparkles className="w-4 h-4 animate-pulse-soft" />
+                  <span className="text-sm font-medium tracking-wide">Daily Inspiration</span>
                 </div>
-                <h1 className="font-display text-3xl md:text-4xl font-semibold text-foreground leading-tight">
-                  {todayPrompt}
-                </h1>
-                <p className="text-muted-foreground">
-                  {format(new Date(), 'EEEE, MMMM d, yyyy')}
-                </p>
+
+                <div className="space-y-2">
+                  <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground leading-[1.1] tracking-tight text-balance">
+                    "{todayPrompt}"
+                  </h1>
+                  <p className="text-xl text-muted-foreground font-light">
+                    {format(new Date(), 'EEEE, MMMM d')}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex flex-col gap-4 w-full md:w-auto">
+              <div className="flex flex-col gap-5 w-full md:w-auto min-w-[200px] animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 {user ? (
                   <>
-                    <Link to="/record">
-                      <Button variant="coral" size="xl" className="w-full md:w-auto gap-2">
-                        <Video className="w-5 h-5" />
+                    <Link to="/record" className="w-full">
+                      <Button variant="coral" size="xl" className="w-full gap-3 shadow-lg shadow-coral/30 hover:shadow-coral/50 transition-all duration-300 transform hover:scale-[1.02] h-16 rounded-2xl text-lg">
+                        <div className="relative flex items-center justify-center">
+                          <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-20 animate-ping" />
+                          <Video className="w-6 h-6 relative z-10" />
+                        </div>
                         {todayHasEntry ? 'Add Another Entry' : 'Record Today'}
                       </Button>
                     </Link>
-                    <StreakCounter streak={streak} />
+                    <div className="flex justify-center p-2 bg-white/50 dark:bg-black/20 rounded-2xl backdrop-blur-sm">
+                      <StreakCounter streak={streak} />
+                    </div>
                   </>
                 ) : (
-                  <Link to="/auth">
-                    <Button variant="coral" size="xl" className="w-full md:w-auto gap-2">
+                  <Link to="/auth" className="w-full">
+                    <Button variant="coral" size="xl" className="w-full gap-3 shadow-lg shadow-coral/25 hover:shadow-coral/40 h-14 rounded-2xl">
                       <LogIn className="w-5 h-5" />
                       Sign In to Start
                     </Button>
