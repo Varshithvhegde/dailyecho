@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 50% 98%;
+    --foreground: 25 30% 15%;
+
+    --card: 30 40% 99%;
+    --card-foreground: 25 30% 15%;
+
+    --popover: 30 40% 99%;
+    --popover-foreground: 25 30% 15%;
+
+    --primary: 15 80% 65%;
+    --primary-foreground: 30 50% 98%;
+
+    --secondary: 270 40% 92%;
+    --secondary-foreground: 270 30% 30%;
+
+    --muted: 30 20% 94%;
+    --muted-foreground: 25 15% 45%;
+
+    --accent: 160 40% 88%;
+    --accent-foreground: 160 30% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 25% 88%;
+    --input: 30 25% 88%;
+    --ring: 15 80% 65%;
+
+    --radius: 1rem;
+
+    /* Custom diary colors */
+    --coral: 15 80% 65%;
+    --coral-light: 15 85% 90%;
+    --peach: 25 70% 92%;
+    --lavender: 270 40% 85%;
+    --lavender-light: 270 50% 95%;
+    --sage: 160 30% 85%;
+    --sage-light: 160 40% 94%;
+    --warm-cream: 40 45% 96%;
+    --warm-brown: 25 30% 25%;
+
+    /* Mood colors */
+    --mood-happy: 45 90% 60%;
+    --mood-sad: 220 60% 60%;
+    --mood-anxious: 35 80% 55%;
+    --mood-excited: 340 80% 65%;
+    --mood-calm: 200 50% 70%;
+    --mood-stressed: 0 70% 60%;
+    --mood-grateful: 160 60% 50%;
+    --mood-reflective: 270 50% 65%;
+
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(var(--coral-light)) 0%, hsl(var(--lavender-light)) 50%, hsl(var(--sage-light)) 100%);
+    --gradient-coral: linear-gradient(135deg, hsl(15 85% 75%) 0%, hsl(35 80% 80%) 100%);
+    --gradient-lavender: linear-gradient(135deg, hsl(270 50% 85%) 0%, hsl(290 45% 90%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--coral) / 0.15);
+    --shadow-card: 0 8px 30px -8px hsl(25 30% 30% / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--coral) / 0.2);
+
+    --sidebar-background: 30 40% 97%;
+    --sidebar-foreground: 25 30% 15%;
+    --sidebar-primary: 15 80% 65%;
+    --sidebar-primary-foreground: 30 50% 98%;
+    --sidebar-accent: 30 30% 92%;
+    --sidebar-accent-foreground: 25 30% 15%;
+    --sidebar-border: 30 25% 88%;
+    --sidebar-ring: 15 80% 65%;
+  }
+
+  .dark {
+    --background: 25 25% 8%;
+    --foreground: 30 30% 92%;
+
+    --card: 25 20% 12%;
+    --card-foreground: 30 30% 92%;
+
+    --popover: 25 20% 12%;
+    --popover-foreground: 30 30% 92%;
+
+    --primary: 15 75% 60%;
+    --primary-foreground: 25 25% 8%;
+
+    --secondary: 270 25% 20%;
+    --secondary-foreground: 270 40% 85%;
+
+    --muted: 25 15% 18%;
+    --muted-foreground: 30 20% 60%;
+
+    --accent: 160 25% 20%;
+    --accent-foreground: 160 40% 80%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 15% 20%;
+    --input: 25 15% 20%;
+    --ring: 15 75% 60%;
+
+    --coral-light: 15 40% 20%;
+    --lavender-light: 270 25% 18%;
+    --sage-light: 160 20% 16%;
+
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 30 30% 92%;
+    --sidebar-primary: 15 75% 60%;
+    --sidebar-primary-foreground: 25 25% 8%;
+    --sidebar-accent: 25 15% 16%;
+    --sidebar-accent-foreground: 30 30% 92%;
+    --sidebar-border: 25 15% 18%;
+    --sidebar-ring: 15 75% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', serif;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .gradient-coral {
+    background: var(--gradient-coral);
+  }
+
+  .gradient-lavender {
+    background: var(--gradient-lavender);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
+  }
+
+  .mood-pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer;
+  }
+}
+
+/* Smooth page transitions */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Recording pulse animation */
+@keyframes recording-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(0 70% 50% / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px hsl(0 70% 50% / 0);
+  }
+}
+
+.recording-indicator {
+  animation: recording-pulse 1.5s ease-in-out infinite;
+}
