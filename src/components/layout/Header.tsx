@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Video, Calendar, BarChart3, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from '@/components/common/Logo';
 
 const navItems = [
   { path: '/', label: 'Home', icon: Video },
@@ -17,13 +18,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-coral shadow-soft">
-            <Video className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <span className="font-display text-xl font-semibold text-foreground">
-            Reflect
-          </span>
+        <Link to="/" className="hover:opacity-90 transition-opacity">
+          <Logo />
         </Link>
 
         {/* Desktop Navigation */}
@@ -31,7 +27,7 @@ export function Header() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
-            
+
             return (
               <Link key={item.path} to={item.path}>
                 <Button
@@ -67,10 +63,10 @@ export function Header() {
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
-              
+
               return (
-                <Link 
-                  key={item.path} 
+                <Link
+                  key={item.path}
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                 >
