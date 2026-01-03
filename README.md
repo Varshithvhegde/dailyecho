@@ -95,7 +95,9 @@ Handles Mux events (`video.asset.ready`, etc.) to update statuses and transcript
    - Add `OPENAI_API_KEY`.
 
 ---
+## Explanation
 
+https://player.mux.com/CCj4qM26bpO6r6Zlx37CFqh01dDZNAaYmt9FaJXDPkEY
 ## 🛡️ Security
 
 - **Row Level Security (RLS)** ensures users only access their own memories.
