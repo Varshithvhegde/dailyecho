@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Video, Calendar, BarChart3, Menu, X } from 'lucide-react';
+import { Video, Calendar, BarChart3, Menu, X, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Logo } from '@/components/common/Logo';
+import { useAuth } from '@/hooks/useAuth';
 
 const navItems = [
   { path: '/', label: 'Home', icon: Video },
@@ -14,6 +15,12 @@ const navItems = [
 export function Header() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
@@ -43,6 +50,16 @@ export function Header() {
               </Link>
             );
           })}
+          {user && (
+            <Button
+              variant="ghost"
+              onClick={handleSignOut}
+              className="gap-2 rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </Button>
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -83,6 +100,16 @@ export function Header() {
                 </Link>
               );
             })}
+            {user && (
+              <Button
+                variant="ghost"
+                onClick={handleSignOut}
+                className="w-full justify-start gap-3 rounded-xl h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+              >
+                <LogOut className="h-5 w-5" />
+                Sign Out
+              </Button>
+            )}
           </div>
         </nav>
       )}
